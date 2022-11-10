@@ -1,0 +1,15 @@
+{
+	"name": "hw8",
+	"version": "1.0.0",
+	"description": "Assignment: Create a blog site where you can upload blog posts  (text) to a database, and then see any posts on the site.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "concurrently \"cd client && npm run dev\" \"cd server && npm run start\""
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "^7.5.0"
+	}
+}
