@@ -1,5 +1,9 @@
-Assignment: Create a blog site where you can upload blog posts 
-(text) to a database, and then see any posts on the site.
+Add authentication to the blog (homework 8). require password to post blogs.
 
-Due: Friday, Nov 11, 11:59pm.
+(viewing without passwords is fine)
 
+password protection: 8 points
+
+ability to delete blogs: 2 points
+
+ability to edit blog(bonus): 5 points
