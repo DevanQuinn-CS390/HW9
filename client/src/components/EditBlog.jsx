@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { TextField, Box, Button, CircularProgress } from '@mui/material';
 
-const CreatePost = () => {
-	const [title, setTitle] = useState('');
-	const [text, setText] = useState('');
+const EditBlog = ({ data, fetchData, handleDialogClose }) => {
+	const { _id } = data;
+	const [title, setTitle] = useState(data.title);
+	const [text, setText] = useState(data.text);
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
@@ -11,15 +12,17 @@ const CreatePost = () => {
 	const handleContentChange = event => setText(event.target.value);
 	const handlePasswordChange = event => setPassword(event.target.value);
 
-	const onSubmit = async () => {
+	const onSubmit = async e => {
+		e.preventDefault();
 		setLoading(true);
 		const body = JSON.stringify({
+			_id,
 			title,
 			text,
 			password,
 		});
-		const data = await fetch('http://localhost:3000/blog/create-post', {
-			method: 'POST',
+		const data = await fetch('http://localhost:3000/blog/edit', {
+			method: 'PUT',
 			body,
 			headers: { 'Content-Type': 'application/json' },
 		})
@@ -29,8 +32,8 @@ const CreatePost = () => {
 					return alert(text);
 				}
 				alert('Success');
-				setTitle('');
-				setText('');
+				fetchData();
+				handleDialogClose();
 			})
 			.catch(() => alert('An error has occurred'));
 		setLoading(false);
@@ -38,7 +41,6 @@ const CreatePost = () => {
 
 	return (
 		<div>
-			<h3>Create a Post</h3>
 			<Box
 				component='form'
 				sx={{
@@ -51,6 +53,7 @@ const CreatePost = () => {
 					value={title}
 					onChange={handleTitleChange}
 					margin='dense'
+					type='text'
 				/>
 				<TextField
 					label='Content'
@@ -59,6 +62,7 @@ const CreatePost = () => {
 					onChange={handleContentChange}
 					rows={10}
 					margin='dense'
+					type='text'
 				/>
 				<TextField
 					label='Password'
@@ -82,4 +86,4 @@ const CreatePost = () => {
 	);
 };
 
-export default CreatePost;
+export default EditBlog;

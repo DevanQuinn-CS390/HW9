@@ -19,7 +19,12 @@ const App = () => {
 					sx={{ backgroundColor: 'white' }}
 				>
 					<Toolbar>
-						<Tabs value={value} onChange={handleChange} textColor='primary'>
+						<Tabs
+							value={value}
+							onChange={handleChange}
+							textColor='primary'
+							centered
+						>
 							<Tab label='My Blogs' value={1} />
 							<Tab label='Create Blog Post' value={2} />
 						</Tabs>
